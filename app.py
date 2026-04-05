@@ -23,7 +23,7 @@ app.config["MAX_CONTENT_LENGTH"] = 100 * 1024 * 1024   # 100 MB
 # ── Databricks config ────────────────────────────────────────────────────────
 DATABRICKS_HOST  = os.environ.get("DATABRICKS_HOST",  "https://<your-workspace>.azuredatabricks.net")
 DATABRICKS_TOKEN = os.environ.get("DATABRICKS_TOKEN", "<your-personal-access-token>")
-RF_JOB_ID        = os.environ.get("RF_JOB_ID",        "")
+RF_JOB_ID        = 956652827269953
 ISO_JOB_ID       = os.environ.get("ISO_JOB_ID",       "")
 
 HEADERS = {
