@@ -1,0 +1,30 @@
+# app.yaml — Databricks Apps deployment configuration
+# Docs: https://docs.databricks.com/en/dev-tools/databricks-apps/app-development.html
+
+command:
+  - gunicorn
+  - --bind=0.0.0.0:8000
+  - --workers=2
+  - --timeout=660
+  - --log-level=info
+  - app:app
+
+# Environment variables — set values in the Databricks Apps UI
+# (Apps → Your App → Settings → Environment Variables)
+# Never hardcode secrets here.
+env:
+  - name: DATABRICKS_HOST
+    valueFrom: secret     # Set in Databricks Apps UI
+    description: "Your Databricks workspace URL, e.g. https://adb-xxxx.azuredatabricks.net"
+
+  - name: DATABRICKS_TOKEN
+    valueFrom: secret     # Set in Databricks Apps UI — use a Service Principal PAT in production
+    description: "Databricks Personal Access Token with Jobs run permission"
+
+  - name: RF_JOB_ID
+    valueFrom: secret     # Job ID for the 'Supervised Model- Random Forest' notebook job
+    description: "Databricks Job ID wrapping the Random Forest notebook"
+
+  - name: ISO_JOB_ID
+    valueFrom: secret     # Job ID for the 'Unsupervised model- Isolation forest' notebook job
+    description: "Databricks Job ID wrapping the Isolation Forest notebook"
